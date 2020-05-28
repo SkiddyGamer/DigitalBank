@@ -8,10 +8,21 @@ namespace DigitalBank
     {
         public string Number { get; }
         public string Owner { get; set; }
-        public decimal Balance { get; }
-        public DateTime DateCreated { get; set; }
+        public decimal Balance 
+        {
+            get
+            {
+                decimal balance = 0;
+                foreach(var t in transactions)
+                {
+                    balance += t.Amount;
+                }
+                return balance;
+            }
+        }
+        public DateTime DateCreated { get; }
 
-        private List<Transaction> transactions = new list<Transaction>();
+        private List<Transaction> transactions = new List<Transaction>();
 
         public BankAccount(string ownerName, decimal initialBalance)
         {
